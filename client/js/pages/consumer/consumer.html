@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="jumbotron text-center">
+		<div>
+			<form name="myForm" sf-schema="schema" sf-form="form" sf-model="model" ng-submit="onSubmit(myForm)"></form>
+		</div>
+
+		<hr class="my-4">
+
+		<!-- WIDGET CONTENT -->
+		<div>
+			<!-- WIDGET BODY -->
+			<div>
+				<div id="consumerGrid" ui-grid="gridOptions" ui-grid-edit class="grid"></div>
+				<!-- FOOTER -->
+				<div class="grid">
+					<div class="pull-left">
+						<span style="font-style: italic;"> <a ng-click="toggleFiltering(gridOptions, gridApi)" class="clickable btn-xs btn-primary"><i class="glyphicon glyphicon-filter"></i></a> Visibili
+							{{gridApi.grid.renderContainers.body.visibleRowCache.length}} su {{gridApi.grid.rows.length}} totali
+						</span>
+					</div>
+				</div>
+			</div>
+			<!-- FINE WIDGET BODY -->
+		</div>
+	</div>
+</div>
