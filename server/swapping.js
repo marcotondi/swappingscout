@@ -5,7 +5,7 @@
     var app = require('./server.js');
 
     var users = {};//app.models.Consumer; //data.users;
-    var objectSwap = [];//app.models.Objects; //data.objectSwap;
+    var objectSwap = null;//app.models.Objects; //data.objectSwap;
 
     /**
      * ricerca gli ogetti allinterno degli utenti
@@ -181,10 +181,21 @@
     function init() {
 
         console.log('init swapping');
+
+        objectSwap = new Map();
         var Consumer = app.models.Consumer;
         var Objects = app.models.Objects;
 
         var promise = [];
+
+        promise.push(Objects.find()
+            .then(function (objects) {
+                //objectSwap = objects;
+
+                _.forEach(objects, function (obj) {
+                    objectSwap.set(obj.code, 0);
+                });
+            }));
 
         promise.push(Consumer.find()
             .then(function (consumers) {
@@ -195,28 +206,27 @@
                         name: cons.name,
                         obj: cons.obj,
                         assign: false,
-                        point: 0, 
+                        point: 0,
                         countAss: 0
-                    }
-                });
-            }));
+                    };
 
-        promise.push(Objects.find()
-            .then(function (objects) {
-                //objectSwap = objects;
+                    _.forEach(cons.obj, function (objs) {
+                        let count = objectSwap.get(objs.label);
+    
+                        objectSwap.set(objs.label, ++count);
+                    });
 
-                _.forEach(objects, function (obj) {
-                    objectSwap.push(obj.code);
                 });
             }));
 
         Promise.all(promise).then(function () {
             console.log('start swapping');
 
-            _.forEach(objectSwap, function (obj) {
-                console.log("Start", obj);
-                startAlgo(obj);
-            });
+            //FIXME lanciare startAlgo per valori MAX / MIN di priorità
+            // _.forEach(objectSwap, function (obj) {
+            //     console.log("Start", obj);
+            //     startAlgo(obj);
+            // });
 
             console.log('end swapping');
         });
