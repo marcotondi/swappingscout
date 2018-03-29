@@ -1,0 +1,33 @@
+{
+  "name": "result",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "consumer": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "assign": {
+      "type": "string"
+    },
+    "bet": {
+      "type": "number",
+      "required": true
+    },
+    "point": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

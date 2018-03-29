@@ -1,5 +1,32 @@
 <div class="jumbotron text-center">
-	<h1>Swapping Scout</h1>
+	<h1>Avvia</h1>
+	<div>
+		<a href="#" class="btn btn-default btn-circle" ng-click="start()">
+			<i class="glyphicon glyphicon-off"></i>
+		</a>
+	</div>
+</div>
 
-	<a href="#" class="btn btn-default btn-circle" ng-click="start()"><i class="glyphicon glyphicon-off"></i></a>
+<div class="container text-center">
+	<hr class="my-4">
+
+		<!-- WIDGET CONTENT -->
+		<div>
+			<p class="lead">Risultato</p>
+		<!-- WIDGET BODY -->
+		<div>
+			<div id="resultGrid" ui-grid="gridOptions" ui-grid-edit class="grid"></div>
+			<!-- FOOTER -->
+			<div class="grid">
+				<div class="pull-left">
+					<span style="font-style: italic;">
+						<a ng-click="toggleFiltering(gridOptions, gridApi)" class="clickable btn-xs btn-primary">
+							<i class="glyphicon glyphicon-filter"></i>
+						</a> Visibili {{gridApi.grid.renderContainers.body.visibleRowCache.length}} su {{gridApi.grid.rows.length}} totali
+					</span>
+				</div>
+			</div>
+		</div>
+		<!-- FINE WIDGET BODY -->
+	</div>
 </div>

@@ -42,5 +42,9 @@
   "Objects": {
     "dataSource": "db",
     "public": true
+  },
+  "result": {
+    "dataSource": "db",
+    "public": true
   }
 }

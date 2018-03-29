@@ -3,9 +3,9 @@
 
 	var app = angular.module('swappingscout');
 
-	app.controller('homeController', ['$scope', '$http', 'growl', homeController]);
+	app.controller('homeController', ['$scope', '$http', '$timeout', 'uiGridConstants', 'growl', homeController]);
 
-	function homeController($scope, $http, growl) {
+	function homeController($scope, $http, $timeout, uiGridConstants, growl) {
 
 		$scope.start = function () {
 			$http.get('/start')
@@ -16,5 +16,44 @@
 					growl.error('Something went wrong', { title: 'ERROR!' });
 				});
 		};
+
+		$scope.gridOptions = {
+			enableFiltering: false,
+			columnDefs: [
+				{ name: 'Nome', field: 'consumer' },
+				{ name: 'Assegnato', field: 'label' },
+				{ name: 'Puntata', field: 'bet' },
+				{ name: 'Punti', field: 'point' },
+			],
+			onRegisterApi: function (gridApi) {
+				$scope.gridApi = gridApi;
+				var cellTemplate = '<div class="ui-grid-cell-contents"> <a class="center clickable" ng-click="grid.appScope.remove(row)"><i class="glyphicon glyphicon-trash"></i></a></div>';
+				$scope.gridApi.core.addRowHeaderColumn({ name: 'rowHeaderCol', displayName: '', width: 30, cellTemplate: cellTemplate });
+			}
+		};
+
+		$scope.toggleFiltering = function (scopeGrid, gridApi) {
+			scopeGrid.enableFiltering = !scopeGrid.enableFiltering;
+			gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
+		};
+
+		$scope.remove = function (row) {
+			// TODD $http.delete('/api/Consumers/' + row.entity.id).then(function (response) {});
+		}
+
+		function readResult() {
+			$http.get('/api/results')
+				.then(function (response) {
+					$scope.gridOptions.data = response.data;
+
+				}, function (response) {
+					//Second function handles error
+					growl.error('Something went wrong', { title: 'ERROR!' });
+				});
+		};
+
+		$timeout(function () {
+			readResult();
+		});
 	}
 })();

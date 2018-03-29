@@ -7,6 +7,8 @@
     var users = {};//app.models.Consumer; //data.users;
     var objectSwap = null;//app.models.Objects; //data.objectSwap;
 
+    var result = app.models.Result;
+
     /**
      * ricerca gli ogetti allinterno degli utenti
      * @param {*} _strObj 
@@ -145,7 +147,13 @@
                 users[key].countAss++;
                 ret = key;
 
-                // dataService.addObj(key, value);
+                var _res = Object.assign({}, value);//{consumer: key, value};
+                _res['consumer'] = key;
+                // TODO salvataggio
+                result.create(_res)
+                    .then(function (_res) {
+                        console.log(_res);
+                    });
             }
 
             _.remove(users[key].obj, function (n) {
@@ -153,26 +161,6 @@
             });
         }
         return ret;
-    }
-
-    /**
-     * 
-     * @param {*} _users 
-     */
-    function exportResult(_users) {
-        _.forEach(_users, function (value, key) {
-            let keyUser = value.name;
-            let sizeUser = value.obj.length;
-
-            // dataService.registerUser(keyUser);
-            _.forEach(value.obj, function (value, key) {
-                if (value.take) {
-                    // dataService.setObj(keyUser, value);
-                }
-            });
-        });
-        // dataService.saveUsers();
-        return;
     }
 
     /**
@@ -188,9 +176,13 @@
 
         var promise = [];
 
+        promise.push(result.destroyAll()
+            .then(function () {
+                console.log('Cancellazione eseguita');
+            }));
+
         promise.push(Objects.find()
             .then(function (objects) {
-                //objectSwap = objects;
 
                 _.forEach(objects, function (obj) {
                     objectSwap.set(obj.code, 0);
@@ -212,10 +204,9 @@
 
                     _.forEach(cons.obj, function (objs) {
                         let count = objectSwap.get(objs.label);
-    
+
                         objectSwap.set(objs.label, ++count);
                     });
-
                 });
             }));
 
@@ -223,16 +214,13 @@
             console.log('start swapping');
 
             //FIXME lanciare startAlgo per valori MAX / MIN di priorità
-            // _.forEach(objectSwap, function (obj) {
-            //     console.log("Start", obj);
-            //     startAlgo(obj);
-            // });
+            for (var [key, value] of objectSwap.entries()) {
+                console.log("Start", key);
+                startAlgo(key);
+            };
 
             console.log('end swapping');
         });
-
-        // dataService.saveUsers();
-        //exportResult(users);
 
         return;
     }
