@@ -168,61 +168,65 @@
      */
     function init() {
 
-        console.log('init swapping');
+       return new Promise(function (resolve, reject) {
 
-        objectSwap = new Map();
-        var Consumer = app.models.Consumer;
-        var Objects = app.models.Objects;
+            console.log('init swapping');
 
-        var promise = [];
+            objectSwap = new Map();
+            var Consumer = app.models.Consumer;
+            var Objects = app.models.Objects;
 
-        promise.push(result.destroyAll()
-            .then(function () {
-                console.log('Cancellazione eseguita');
-            }));
+            var promise = [];
 
-        promise.push(Objects.find()
-            .then(function (objects) {
+            promise.push(result.destroyAll()
+                .then(function () {
+                    console.log('Cancellazione eseguita');
+                }));
 
-                _.forEach(objects, function (obj) {
-                    objectSwap.set(obj.code, 0);
-                });
-            }));
+            promise.push(Objects.find()
+                .then(function (objects) {
 
-        promise.push(Consumer.find()
-            .then(function (consumers) {
-                //users = consumers[0];
-
-                _.forEach(consumers, function (cons) {
-                    users[cons.name] = {
-                        name: cons.name,
-                        obj: cons.obj,
-                        assign: false,
-                        point: 0,
-                        countAss: 0
-                    };
-
-                    _.forEach(cons.obj, function (objs) {
-                        let count = objectSwap.get(objs.label);
-
-                        objectSwap.set(objs.label, ++count);
+                    _.forEach(objects, function (obj) {
+                        objectSwap.set(obj.code, 0);
                     });
-                });
-            }));
+                }));
 
-        Promise.all(promise).then(function () {
-            console.log('start swapping');
+            promise.push(Consumer.find()
+                .then(function (consumers) {
+                    //users = consumers[0];
 
-            //FIXME lanciare startAlgo per valori MAX / MIN di priorità
-            for (var [key, value] of objectSwap.entries()) {
-                console.log("Start", key);
-                startAlgo(key);
-            };
+                    _.forEach(consumers, function (cons) {
+                        users[cons.name] = {
+                            name: cons.name,
+                            obj: cons.obj,
+                            assign: false,
+                            point: 0,
+                            countAss: 0
+                        };
 
-            console.log('end swapping');
+                        _.forEach(cons.obj, function (objs) {
+                            let count = objectSwap.get(objs.label);
+
+                            objectSwap.set(objs.label, ++count);
+                        });
+                    });
+                }));
+
+            Promise.all(promise).then(function () {
+                console.log('start swapping');
+
+                //FIXME lanciare startAlgo per valori MAX / MIN di priorità
+                for (var [key, value] of objectSwap.entries()) {
+                    console.log("Start", key);
+                    startAlgo(key);
+                };
+
+                console.log('end swapping');
+
+            });
+
+            resolve('done!');
         });
-
-        return;
     }
 
 

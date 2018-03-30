@@ -8,9 +8,18 @@
 	function homeController($scope, $http, $timeout, uiGridConstants, growl) {
 
 		$scope.start = function () {
+			growl.info('swapping start...');
+			$scope.gridOptions.data = {};
+			
 			$http.get('/start')
 				.then(function (response) {
-					growl.success(response.data);
+					
+					var _res = response.data;
+					if(_res === 'done!'){
+						readResult();
+						growl.success('Done!');
+					}
+
 				}, function (response) {
 					//Second function handles error
 					growl.error('Something went wrong', { title: 'ERROR!' });

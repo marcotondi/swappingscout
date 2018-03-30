@@ -7,9 +7,11 @@
 
         app.get('/start', function (req, res) {
 
-            swapping.init();
+            swapping.init()
+                .then(function (resolve) {
+                    res.send(resolve);
+                })
 
-            res.send('swapping staring...');
         });
     };
 
