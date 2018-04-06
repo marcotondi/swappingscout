@@ -10,12 +10,12 @@
 		$scope.start = function () {
 			growl.info('swapping start...');
 			$scope.gridOptions.data = {};
-			
+
 			$http.get('/start')
 				.then(function (response) {
-					
+
 					var _res = response.data;
-					if(_res === 'done!'){
+					if (_res === 'done!') {
 						readResult();
 						growl.success('Done!');
 					}
@@ -27,12 +27,14 @@
 		};
 
 		$scope.gridOptions = {
+			enableHorizontalScrollbar: 0,
 			enableFiltering: false,
+			showColumnFooter: true,
 			columnDefs: [
 				{ name: 'Nome', field: 'consumer' },
 				{ name: 'Assegnato', field: 'label' },
-				{ name: 'Puntata', field: 'bet' },
-				{ name: 'Punti', field: 'point' },
+				{ name: 'Puntata', field: 'bet', aggregationType: uiGridConstants.aggregationTypes.sum },
+				{ name: 'Punti', field: 'point', aggregationType: uiGridConstants.aggregationTypes.sum },
 			],
 			onRegisterApi: function (gridApi) {
 				$scope.gridApi = gridApi;
@@ -53,8 +55,8 @@
 		function readResult() {
 			$http.get('/api/results')
 				.then(function (response) {
-					$scope.gridOptions.data = response.data;
-
+					$scope.gridOptions.data = response.data; // TODO controllare la response vuota
+					
 				}, function (response) {
 					//Second function handles error
 					growl.error('Something went wrong', { title: 'ERROR!' });

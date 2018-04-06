@@ -4,8 +4,10 @@
     const _ = require("lodash");// Let's show where the Internation Space Station currently is.
     var app = require('./server.js');
 
-    var users = {};//app.models.Consumer; //data.users;
-    var objectSwap = null;//app.models.Objects; //data.objectSwap;
+    const INCREASING = false; //default false - TODO leggere da properties
+
+    var users = {};//app.models.Consumer;
+    var objectSwap = null;//app.models.Objects;
 
     var result = app.models.Result;
 
@@ -67,7 +69,7 @@
             console.log("call ricorsive method");
             do {
                 var strObj_X = searchObjKey(vKeyMax.keys, _strObj);// search key - obj
-                var idRem = startAlgo(strObj_X);// TODO call ricorsive method
+                var idRem = startAlgo(strObj_X);// call ricorsive method
                 var bool = reviewUsersID(vKeyMax.keys, idRem);// remove key in keys
             } while (vKeyMax.keys.length > 1 && idRem != undefined);
 
@@ -98,6 +100,7 @@
         });
 
         if (key == undefined) {
+            console.log("chooseKey - assegno l'oggetto random");
             key = _keys[Math.floor((Math.random() * _keys.length) + 0)];
         }
         return key;
@@ -168,7 +171,7 @@
      */
     function init() {
 
-       return new Promise(function (resolve, reject) {
+        return new Promise(function (resolve, reject) {
 
             console.log('init swapping');
 
@@ -215,11 +218,11 @@
             Promise.all(promise).then(function () {
                 console.log('start swapping');
 
-                //FIXME lanciare startAlgo per valori MAX / MIN di priorità
-                for (var [key, value] of objectSwap.entries()) {
-                    console.log("Start", key);
-                    startAlgo(key);
-                };
+                var _objs = sortingMap(objectSwap);
+                _.forEach(_objs, function (obj) {
+                    console.log(obj.key + '-' + obj.value);
+                    startAlgo(obj.key);
+                });
 
                 console.log('end swapping');
 
@@ -229,6 +232,29 @@
         });
     }
 
+    function sortingMap(_map) {
+
+        var array = [];
+
+        for (var [key, value] of objectSwap.entries()) {
+            array.push({ key: key, value: value });
+        };
+
+        return INCREASING === true ? increasingOrder(array) : descendingOrder(array);
+    }
+
+    function increasingOrder(array) {
+
+        return array.sort(function (a, b) {
+            return (a.value > b.value) ? 1 : ((a.value < b.value) ? -1 : 0);
+        });
+    };
+
+    function descendingOrder(array) {
+        return array.sort(function (a, b) {
+            return (a.value < b.value) ? 1 : ((a.value > b.value) ? -1 : 0);
+        });
+    };
 
     module.exports = {
         init
