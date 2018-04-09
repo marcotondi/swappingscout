@@ -38,7 +38,7 @@
 			],
 			onRegisterApi: function (gridApi) {
 				$scope.gridApi = gridApi;
-				var cellTemplate = '<div class="ui-grid-cell-contents"> <a class="center clickable" ng-click="grid.appScope.remove(row)"><i class="glyphicon glyphicon-trash"></i></a></div>';
+				var cellTemplate = '<div class="ui-grid-cell-contents"> <a class="center clickable" ng-click="grid.appScope.remove(row)" data-toggle="tooltip" title="Consegnato!"><i class="glyphicon glyphicon-share-alt"></i></a></div>';
 				$scope.gridApi.core.addRowHeaderColumn({ name: 'rowHeaderCol', displayName: '', width: 30, cellTemplate: cellTemplate });
 			}
 		};
