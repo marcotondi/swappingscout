@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Comfortaa';
+    font-style: normal;
+    src: url(Comfortaa.eot);
+    src: local('Comfortaa'), url('../assets/Comfortaa/Comfortaa-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    font-style: italic;
+    src: url(Comfortaa.eot);
+    src: local('Comfortaa'), url('../assets/Comfortaa/Comfortaa-Light.ttf') format('truetype');
+  }
+
+@font-face {
+    font-family: 'Comfortaa';
+    font-style: bold;
+    src: url(Comfortaa.eot);
+    src: local('Comfortaa'), url('../assets/Comfortaa/Comfortaa-Bold.ttf') format('truetype');
+}

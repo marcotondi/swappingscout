@@ -11,3 +11,8 @@
     line-height: 2.0;
     border-radius: 100%;
   }
+
+body{
+    font-family: font_name, Comfortaa, sans-serif;
+    font-size: 12px;
+}
