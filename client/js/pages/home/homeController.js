@@ -49,14 +49,28 @@
 		};
 
 		$scope.remove = function (row) {
-			// TODD $http.delete('/api/Consumers/' + row.entity.id).then(function (response) {});
+			$http.delete('/api/Objects?[where][code]=' + row.entity.label)
+				.then(function (response) {
+					$http.delete('/api/results/' + row.entity.id)
+						.then(function (response) {
+							console.log('cancellazione effettuata!');
+							readResult();
+							growl.success('Oggetto consegnato :)');
+						}, function (response) {
+							//Second function handles error
+							growl.error('Something went wrong', { title: 'ERROR!' });
+						});
+				}, function (response) {
+					//Second function handles error
+					growl.error('Something went wrong', { title: 'ERROR!' });
+				});
 		}
 
 		function readResult() {
 			$http.get('/api/results')
 				.then(function (response) {
 					$scope.gridOptions.data = response.data; // TODO controllare la response vuota
-					
+
 				}, function (response) {
 					//Second function handles error
 					growl.error('Something went wrong', { title: 'ERROR!' });

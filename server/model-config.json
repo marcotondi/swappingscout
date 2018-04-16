@@ -41,7 +41,14 @@
   },
   "Objects": {
     "dataSource": "db",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": true
+        }
+      }
+    }
   },
   "result": {
     "dataSource": "db",
