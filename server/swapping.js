@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    const _ = require("lodash");// Let's show where the Internation Space Station currently is.
+    const _ = require("lodash");
     var app = require('./server.js');
 
-    var users = {};//app.models.Consumer;
-    var objectSwap = null;//app.models.Objects;
+    var users = {};
+    var objectSwap = null;
 
     var result = app.models.Result;
 
@@ -56,12 +56,12 @@
      * 
      * @param {*} strObj 
      */
-    function startAlgo(_strObj) {
+    function startAlgo(_strObj, oneObj) {
         var map = searchObj(_strObj);
         var vKeyMax = maxMap(map);
 
         if (vKeyMax.keys.length == 1)
-            objAssing(map, vKeyMax.keys[0]);
+            objAssing(map, vKeyMax.keys[0], oneObj);
         else if (vKeyMax.keys.length > 1) {
 
             console.log("call ricorsive method");
@@ -72,9 +72,9 @@
             } while (vKeyMax.keys.length > 1 && idRem != undefined);
 
             if (idRem == undefined)
-                objAssing(map, chooseKey(vKeyMax.keys));// assig obj;
+                objAssing(map, chooseKey(vKeyMax.keys), oneObj);// assig obj;
             else
-                objAssing(map, vKeyMax.keys[0]);// assig obj
+                objAssing(map, vKeyMax.keys[0], oneObj);// assig obj
         }
 
         return;
@@ -140,7 +140,7 @@
      * @param {*} _map 
      * @param {*} keyStrMax 
      */
-    function objAssing(_map, keyStrMax) {
+    function objAssing(_map, keyStrMax, oneObj) {
         var ret = '';
         for (var [key, value] of _map.entries()) {
             value.assign = true;
@@ -148,18 +148,24 @@
                 users[key].countAss++;
                 ret = key;
 
-                var _res = Object.assign({}, value);//{consumer: key, value};
+                var _res = Object.assign({}, value); // copio value in _res
                 _res['consumer'] = key;
-                // TODO salvataggio
+
                 result.create(_res)
                     .then(function (_res) {
                         console.log(_res);
                     });
             }
 
-            _.remove(users[key].obj, function (n) {
-                return n.assign == true;
-            });
+            // se devo assegnare solo un oggetto, rimuovo l'user 
+            if (oneObj == true) { // FIXME bug, continua a eseguire chooseKey() non va bene
+                _.remove(users[key].obj);
+                break;
+            } else {
+                _.remove(users[key].obj, function (n) {
+                    return n.assign == true;
+                });
+            }
         }
         return ret;
     }
@@ -167,7 +173,7 @@
     /**
      * 
      */
-    function init(order) { // FIXME
+    function init(params) {
 
         return new Promise(function (resolve, reject) {
 
@@ -180,8 +186,8 @@
             var promise = [];
 
             promise.push(result.destroyAll()
-                .then(function () {
-                    console.log('Cancellazione eseguita');
+                .catch(function () {
+                    console.log('ERRORE!!!');
                 }));
 
             promise.push(Objects.find()
@@ -194,7 +200,6 @@
 
             promise.push(Consumer.find()
                 .then(function (consumers) {
-                    //users = consumers[0];
 
                     _.forEach(consumers, function (cons) {
                         users[cons.name] = {
@@ -213,20 +218,22 @@
                     });
                 }));
 
-            Promise.all(promise).then(function () {
-                console.log('start swapping');
+            Promise.all(promise)
+                .then(function () {
+                    console.log('start swapping');
 
-                var _objs = sortingMap(objectSwap, order);
-                _.forEach(_objs, function (obj) {
-                    console.log(obj.key + '-' + obj.value);
-                    startAlgo(obj.key);
+                    var _objs = sortingMap(objectSwap, params.order);
+                    _.forEach(_objs, function (obj) {
+                        console.log(obj.key + '-' + obj.value);
+
+                        /****** START SWAPPING *******/
+                        startAlgo(obj.key, params.oneObj);
+                    });
+
+                    console.log('end swapping');
+
+                    resolve('done!');
                 });
-
-                console.log('end swapping');
-
-            });
-
-            resolve('done!');
         });
     }
 
@@ -239,7 +246,6 @@
         };
 
         return sort(order, array);
-        //INCREASING === true ? increasingOrder(array) : descendingOrder(array);
     }
 
     function sort(order, array) {
@@ -248,14 +254,16 @@
             case "increasing":
                 increasingOrder(array);
                 break;
+
             case "decreasing":
                 descendingOrder(array);
                 break;
+
             default:
                 array
         }
         return array;
-    }
+    };
 
     function increasingOrder(array) {
 

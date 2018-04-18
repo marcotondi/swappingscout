@@ -9,11 +9,11 @@
         app.param('order', function (req, res, next, order) {
             console.log('CALLED ONLY ONCE');
             next();
-          });          
+        });
 
-        app.get('/init/swap/:order', function (req, res) {
+        app.post('/init/swap', function (req, res) {
 
-            swapping.init(req.params.order)
+            swapping.init(req.body)
                 .then(function (resolve) {
                     res.status(OK)
                         .send(resolve);

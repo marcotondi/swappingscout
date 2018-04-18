@@ -14,12 +14,13 @@
 		];
 
 		$scope.selectedOrder = $scope.orders[0].order;
+		$scope.oneObj = true;
 
 		$scope.start = function () {
 			growl.info('swapping start...');
 			$scope.gridOptions.data = {};
 
-			$http.get('/init/swap/' + $scope.selectedOrder) // decreasing default | increasing
+			$http.post('/init/swap/', { order: $scope.selectedOrder, oneObj: $scope.oneObj }) // decreasing default | increasing
 				.then(function (response) {
 
 					if (response.status === 200) {

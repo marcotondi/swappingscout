@@ -1,29 +1,33 @@
 <div class="container">
-	<div class="row jumbotron text-center">
-		<div class="col-sm-6">
-			<h1>Avvia</h1>
-			<div>
-				<a href="" class="btn btn-default btn-circle" ng-click="start()">
-					<i class="glyphicon glyphicon-off"></i>
-				</a>
+	<div class="jumbotron text-center">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>Avvia</h1>
+				<div>
+					<a href="" class="btn btn-default btn-circle" ng-click="start()">
+						<i class="glyphicon glyphicon-off"></i>
+					</a>
+				</div>
 			</div>
-		</div>
-		<div class="col-sm-6">
-			<h3> Impostazioni </h3>
-			<hr class="hrClass">
-			<div>
-				<span>Ordinamento oggetti:
+			<div class="col-sm-6 text-left">
+				<h3> Impostazioni </h3>
+				<hr class="hrClass">
 
+				<div class="row">
+					<div class="col-sm-4" style="padding-top: 7px;">Oggetto unico: </div>
+					<div class="col-sm-4 box">
+						<input class="switch" type="checkbox" ng-model="oneObj">
+					</div>
+				</div>
+
+				<div>
+					Ordinamento oggetti:
 					<select ng-model="selectedOrder">
 						<option ng-repeat="x in orders" value="{{x.order}}">{{x.ita}}</option>
 					</select>
+				</div>
 				</span>
 			</div>
-			<div>
-				<span>Oggetto unico: ON / OFF</span> <!-- TODO da implementare toggle -->
-				
-			</div>
-			</span>
 		</div>
 	</div>
 
