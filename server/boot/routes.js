@@ -2,14 +2,16 @@
     'use strict';
 
     var swapping = require('../swapping');
+    var { OK } = require('http-status-codes');
 
     module.exports = function (app) {
 
-        app.get('/start', function (req, res) {
+        app.get('/init/swap', function (req, res) {
 
             swapping.init()
                 .then(function (resolve) {
-                    res.send(resolve);
+                    res.status(OK)
+                        .send(resolve);
                 })
 
         });
