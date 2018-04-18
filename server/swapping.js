@@ -4,8 +4,6 @@
     const _ = require("lodash");// Let's show where the Internation Space Station currently is.
     var app = require('./server.js');
 
-    const INCREASING = false; //default false - TODO leggere da properties
-
     var users = {};//app.models.Consumer;
     var objectSwap = null;//app.models.Objects;
 
@@ -169,7 +167,7 @@
     /**
      * 
      */
-    function init() {
+    function init(order) { // FIXME
 
         return new Promise(function (resolve, reject) {
 
@@ -218,7 +216,7 @@
             Promise.all(promise).then(function () {
                 console.log('start swapping');
 
-                var _objs = sortingMap(objectSwap);
+                var _objs = sortingMap(objectSwap, order);
                 _.forEach(_objs, function (obj) {
                     console.log(obj.key + '-' + obj.value);
                     startAlgo(obj.key);
@@ -232,7 +230,7 @@
         });
     }
 
-    function sortingMap(_map) {
+    function sortingMap(_map, order) {
 
         var array = [];
 
@@ -240,7 +238,23 @@
             array.push({ key: key, value: value });
         };
 
-        return INCREASING === true ? increasingOrder(array) : descendingOrder(array);
+        return sort(order, array);
+        //INCREASING === true ? increasingOrder(array) : descendingOrder(array);
+    }
+
+    function sort(order, array) {
+
+        switch (order) {
+            case "increasing":
+                increasingOrder(array);
+                break;
+            case "decreasing":
+                descendingOrder(array);
+                break;
+            default:
+                array
+        }
+        return array;
     }
 
     function increasingOrder(array) {

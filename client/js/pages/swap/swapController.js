@@ -7,11 +7,19 @@
 
 	function swapController($scope, $http, $timeout, uiGridConstants, growl) {
 
+		$scope.orders = [
+			{ order: "decreasing", ita: "decrescente (default)" },
+			{ order: "increasing", ita: "crescente" },
+			{ order: "no_order", ita: "nessun ordinamento" }
+		];
+
+		$scope.selectedOrder = $scope.orders[0].order;
+
 		$scope.start = function () {
 			growl.info('swapping start...');
 			$scope.gridOptions.data = {};
 
-			$http.get('/init/swap')
+			$http.get('/init/swap/' + $scope.selectedOrder) // decreasing default | increasing
 				.then(function (response) {
 
 					if (response.status === 200) {

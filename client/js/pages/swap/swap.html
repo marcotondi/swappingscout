@@ -1,32 +1,53 @@
-<div class="container jumbotron text-center">
-	<h1>Avvia</h1>
-	<div>
-		<a href="" class="btn btn-default btn-circle" ng-click="start()">
-			<i class="glyphicon glyphicon-off"></i>
-		</a>
-	</div>
-</div>
+<div class="container">
+	<div class="row jumbotron text-center">
+		<div class="col-sm-6">
+			<h1>Avvia</h1>
+			<div>
+				<a href="" class="btn btn-default btn-circle" ng-click="start()">
+					<i class="glyphicon glyphicon-off"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<h3> Impostazioni </h3>
+			<hr class="hrClass">
+			<div>
+				<span>Ordinamento oggetti:
 
-<div class="container text-center">
-	<hr class="my-4">
+					<select ng-model="selectedOrder">
+						<option ng-repeat="x in orders" value="{{x.order}}">{{x.ita}}</option>
+					</select>
+				</span>
+			</div>
+			<div>
+				<span>Oggetto unico: ON / OFF</span> <!-- TODO da implementare toggle -->
+				
+			</div>
+			</span>
+		</div>
+	</div>
+
+	<div class="text-center">
+		<hr>
 
 		<!-- WIDGET CONTENT -->
 		<div>
 			<p class="lead">Risultato</p>
-		<!-- WIDGET BODY -->
-		<div>
-			<div id="resultGrid" ui-grid="gridOptions" ui-grid-edit class="grid"></div>
-			<!-- FOOTER -->
-			<div class="grid">
-				<div class="pull-left">
-					<span style="font-style: italic;">
-						<a ng-click="toggleFiltering(gridOptions, gridApi)" class="clickable btn-xs btn-primary">
-							<i class="glyphicon glyphicon-filter"></i>
-						</a> Visibili {{gridApi.grid.renderContainers.body.visibleRowCache.length}} su {{gridApi.grid.rows.length}} totali
-					</span>
+			<!-- WIDGET BODY -->
+			<div>
+				<div id="resultGrid" ui-grid="gridOptions" ui-grid-edit class="grid"></div>
+				<!-- FOOTER -->
+				<div class="grid">
+					<div class="pull-left">
+						<span style="font-style: italic;">
+							<a ng-click="toggleFiltering(gridOptions, gridApi)" class="clickable btn-xs btn-primary">
+								<i class="glyphicon glyphicon-filter"></i>
+							</a> Visibili {{gridApi.grid.renderContainers.body.visibleRowCache.length}} su {{gridApi.grid.rows.length}} totali
+						</span>
+					</div>
 				</div>
 			</div>
+			<!-- FINE WIDGET BODY -->
 		</div>
-		<!-- FINE WIDGET BODY -->
 	</div>
 </div>

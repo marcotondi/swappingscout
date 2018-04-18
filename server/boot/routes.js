@@ -6,9 +6,14 @@
 
     module.exports = function (app) {
 
-        app.get('/init/swap', function (req, res) {
+        app.param('order', function (req, res, next, order) {
+            console.log('CALLED ONLY ONCE');
+            next();
+          });          
 
-            swapping.init()
+        app.get('/init/swap/:order', function (req, res) {
+
+            swapping.init(req.params.order)
                 .then(function (resolve) {
                     res.status(OK)
                         .send(resolve);
