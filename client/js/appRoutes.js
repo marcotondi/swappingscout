@@ -23,6 +23,11 @@
 				controller: 'objectsController'
 			})
 
+			.when('/swap', {
+				templateUrl: 'js/pages/swap/swap.html',
+				controller: 'swapController'
+			})
+
 			//DEFAULT ROUTE - DASHBOARD
 			.otherwise({
 				redirectTo: '/'
