@@ -9,19 +9,24 @@
 					</a>
 				</div>
 			</div>
-			<div class="col-sm-6 text-left">
+
+			<div class="col-sm-1">
+				<div style="border-left:1px solid #ccc;height: 195px;"></div>
+			</div>
+
+			<div class="col-sm-5 text-left">
 				<h3> Impostazioni </h3>
 				<hr class="hrClass">
 
 				<div class="row">
-					<div class="col-sm-4" style="padding-top: 7px;">Oggetto unico: </div>
-					<div class="col-sm-4 box">
+					<div class="col-sm-5" style="padding-top: 7px;">Oggetto unico: </div>
+					<div class="col-sm-7 box">
 						<input class="switch" type="checkbox" ng-model="oneObj">
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-4" style="padding-top: 2px;">Ordinamento oggetti:</div>
-					<div class="col-sm-4 box">
+					<div class="col-sm-5" style="padding-top: 2px;">Ordinamento oggetti:</div>
+					<div class="col-sm-7">
 						<select ng-model="selectedOrder">
 							<option ng-repeat="x in orders" value="{{x.order}}">{{x.ita}}</option>
 						</select>
