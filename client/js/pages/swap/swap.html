@@ -19,14 +19,14 @@
 						<input class="switch" type="checkbox" ng-model="oneObj">
 					</div>
 				</div>
-
-				<div>
-					Ordinamento oggetti:
-					<select ng-model="selectedOrder">
-						<option ng-repeat="x in orders" value="{{x.order}}">{{x.ita}}</option>
-					</select>
+				<div class="row">
+					<div class="col-sm-4" style="padding-top: 2px;">Ordinamento oggetti:</div>
+					<div class="col-sm-4 box">
+						<select ng-model="selectedOrder">
+							<option ng-repeat="x in orders" value="{{x.order}}">{{x.ita}}</option>
+						</select>
+					</div>
 				</div>
-				</span>
 			</div>
 		</div>
 	</div>
