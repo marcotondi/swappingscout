@@ -155,17 +155,15 @@
                     .then(function (_res) {
                         console.log(_res);
                     });
+
+                // se devo assegnare solo un oggetto, rimuovo l'user 
+                if (oneObj == true)
+                    _.remove(users[key].obj);
             }
 
-            // se devo assegnare solo un oggetto, rimuovo l'user 
-            if (oneObj == true) { // FIXME bug, continua a eseguire chooseKey() non va bene
-                _.remove(users[key].obj);
-                break;
-            } else {
-                _.remove(users[key].obj, function (n) {
-                    return n.assign == true;
-                });
-            }
+            _.remove(users[key].obj, function (n) {
+                return n.assign == true;
+            });
         }
         return ret;
     }
