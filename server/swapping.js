@@ -47,8 +47,6 @@
                 _keyV.push(key);
             }
         }
-        console.log(_keyV + " => " + _max);
-
         return { max: _max, keys: _keyV };
     }
 
@@ -64,7 +62,6 @@
             objAssing(map, vKeyMax.keys[0], oneObj);
         else if (vKeyMax.keys.length > 1) {
 
-            console.log("call ricorsive method");
             do {
                 var strObj_X = searchObjKey(vKeyMax.keys, _strObj);// search key - obj
                 var idRem = startAlgo(strObj_X);// call ricorsive method
@@ -152,8 +149,8 @@
                 _res['consumer'] = key;
 
                 result.create(_res)
-                    .then(function (_res) {
-                        console.log(_res);
+                    .catch(function (_res) {
+                        console.log('ERRORE!!! salvataggio risultato');
                     });
 
                 // se devo assegnare solo un oggetto, rimuovo l'user 
@@ -172,16 +169,13 @@
      * 
      */
     function init(params) {
+        objectSwap = new Map();
+        var Consumer = app.models.Consumer;
+        var Objects = app.models.Objects;
+        var promise = [];
 
         return new Promise(function (resolve, reject) {
-
-            console.log('init swapping');
-
-            objectSwap = new Map();
-            var Consumer = app.models.Consumer;
-            var Objects = app.models.Objects;
-
-            var promise = [];
+            
 
             promise.push(result.destroyAll()
                 .catch(function () {
@@ -218,17 +212,12 @@
 
             Promise.all(promise)
                 .then(function () {
-                    console.log('start swapping');
-
                     var _objs = sortingMap(objectSwap, params.order);
                     _.forEach(_objs, function (obj) {
-                        console.log(obj.key + '-' + obj.value);
 
                         /****** START SWAPPING *******/
                         startAlgo(obj.key, params.oneObj);
                     });
-
-                    console.log('end swapping');
 
                     resolve('done!');
                 });
