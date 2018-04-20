@@ -39,7 +39,7 @@
 			enableFiltering: false,
 			showColumnFooter: true,
 			columnDefs: [
-				{ name: 'Nome', field: 'consumer' },
+				{ name: 'Nome', field: 'consumer', sort: { direction: uiGridConstants.ASC } },
 				{ name: 'Assegnato', field: 'label' },
 				{ name: 'Puntata', field: 'bet', aggregationType: uiGridConstants.aggregationTypes.sum },
 				{ name: 'Punti', field: 'point', aggregationType: uiGridConstants.aggregationTypes.sum },
