@@ -30,7 +30,7 @@
 			<div>
 				<p class="text-sm font-medium text-gray-900 mb-1.5">Ordinamento Oggetti</p>
 				<select bind:value={$swapSettings.order} class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white">
-					<option value="decreasing">Decrescente (più richiesti prima)</option>
+					<option value="decreasing">Decrescente (default, più richiesti prima)</option>
 					<option value="increasing">Crescente (meno richiesti prima)</option>
 				</select>
 				<p class="text-xs text-gray-400 mt-1">Definisce l'ordine in cui l'algoritmo processa gli oggetti</p>

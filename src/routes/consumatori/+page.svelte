@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { consumers, objects } from '$lib/stores';
 	import { getAllConsumers, addConsumer, updateConsumer, deleteConsumer, clearConsumers, getAllObjects } from '$lib/db';
-	import { exportConsumers, importConsumers, downloadCSV } from '$lib/csv';
+	import { exportConsumers, importConsumers, downloadCSV, normalizeCode } from '$lib/csv';
 	import type { Consumer } from '$lib/types';
 
 	let editingId: number | null = null;
@@ -157,12 +157,27 @@
 		const text = await csvFile[0].text();
 		const imported = importConsumers(text);
 
+		const objectCodes = new Set($objects.map(o => o.code));
+		const errors: string[] = [];
+
 		for (const consumer of imported) {
+			const badChoices = consumer.obj
+				.map(o => o.label)
+				.filter(code => !objectCodes.has(normalizeCode(code)));
+
+			if (badChoices.length > 0) {
+				errors.push(`${consumer.name}: codici inesistenti — ${badChoices.join(', ')}`);
+				continue;
+			}
 			await addConsumer(consumer);
 		}
 
 		$consumers = await getAllConsumers();
 		csvFile = null;
+
+		if (errors.length > 0) {
+			alert(`Importazione completata con ${errors.length} errore/i:\n${errors.join('\n')}`);
+		}
 	}
 
 	async function handleResetConsumers() {

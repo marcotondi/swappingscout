@@ -34,15 +34,9 @@
 	<!-- Sidebar -->
 	<aside class="w-60 bg-purple-950 text-white flex flex-col flex-shrink-0">
 		<!-- Logo -->
-		<div class="p-6">
-			<a href="/" class="flex items-center gap-3">
-				<svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-				</svg>
-				<div>
-					<span class="text-lg font-bold tracking-tight">SwappingScout</span>
-					<span class="text-xs text-purple-300 block">v{version}</span>
-				</div>
+		<div class="p-4 flex justify-center">
+			<a href="/" class="flex items-center justify-center">
+				<img src="%sveltekit.assets%/icons/hat.svg" alt="SwappingScout" class="h-8 w-auto" />
 			</a>
 		</div>
 

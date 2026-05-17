@@ -1,6 +1,14 @@
 import Papa from 'papaparse';
 import type { Consumer, ScoutObject, SwapResult, CSVConsumerRow, CSVObjectRow, CSVResultRow } from './types';
 
+export function normalizeCode(raw: string): string {
+	const match = raw.trim().match(/^([a-zA-Z]+)(\d+)$/);
+	if (!match) return raw.trim().toLowerCase();
+	const letter = match[1].toUpperCase();
+	const num = match[2].padStart(2, '0');
+	return `${letter}${num}`;
+}
+
 export function exportConsumers(consumers: Consumer[]): string {
 	const data = consumers.map((c) => ({
 		nome: c.name,
@@ -39,13 +47,13 @@ export function importConsumers(csvText: string): Omit<Consumer, 'id'>[] {
 		const obj: Consumer['obj'] = [];
 
 		if (row.scelta1) {
-			obj.push({ label: row.scelta1, bet: 15, assign: false });
+			obj.push({ label: normalizeCode(row.scelta1), bet: 15, assign: false });
 		}
 		if (row.scelta2) {
-			obj.push({ label: row.scelta2, bet: 10, assign: false });
+			obj.push({ label: normalizeCode(row.scelta2), bet: 10, assign: false });
 		}
 		if (row.scelta3) {
-			obj.push({ label: row.scelta3, bet: 5, assign: false });
+			obj.push({ label: normalizeCode(row.scelta3), bet: 5, assign: false });
 		}
 
 		return {
@@ -62,7 +70,7 @@ export function importObjects(csvText: string): Omit<ScoutObject, 'id'>[] {
 	});
 
 	return parsed.data.map((row) => ({
-		code: row.codice.toLowerCase(),
+		code: normalizeCode(row.codice),
 		description: row.descrizione
 	}));
 }

@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import { objects } from '$lib/stores';
 	import { getAllObjects, addObject, updateObject, deleteObject, clearObjects } from '$lib/db';
-	import { exportObjects, importObjects, downloadCSV } from '$lib/csv';
+	import { exportObjects, importObjects, downloadCSV, normalizeCode } from '$lib/csv';
 	import type { ScoutObject } from '$lib/types';
 
 	let editingId: number | null = null;
@@ -65,8 +65,14 @@
 	}
 
 	function validateForm(): boolean {
-		if (!code.trim()) {
+		const trimmed = code.trim();
+		if (!trimmed) {
 			error = 'Il codice è obbligatorio';
+			return false;
+		}
+
+		if (!/^[a-zA-Z]\d{1,2}$/.test(trimmed)) {
+			error = 'Il codice deve essere nel formato XYZ (es. A01, B10)';
 			return false;
 		}
 
@@ -75,8 +81,9 @@
 			return false;
 		}
 
+		const normalized = normalizeCode(trimmed);
 		const existing = $objects.find(o =>
-			o.code.toLowerCase() === code.trim().toLowerCase() && o.id !== editingId
+			o.code === normalized && o.id !== editingId
 		);
 		if (existing) {
 			error = 'Esiste già un oggetto con questo codice';
@@ -90,7 +97,7 @@
 		if (!validateForm()) return;
 
 		const obj = {
-			code: code.trim().toLowerCase(),
+			code: normalizeCode(code.trim()),
 			description: description.trim()
 		};
 
@@ -121,12 +128,26 @@
 		const text = await csvFile[0].text();
 		const imported = importObjects(text);
 
+		const errors: string[] = [];
 		for (const obj of imported) {
+			if (!/^[A-Z]\d{2}$/.test(obj.code)) {
+				errors.push(`Codice non valido: ${obj.code}`);
+				continue;
+			}
+			const exists = $objects.find(o => o.code === obj.code);
+			if (exists) {
+				errors.push(`Codice duplicato: ${obj.code}`);
+				continue;
+			}
 			await addObject(obj);
 		}
 
 		$objects = await getAllObjects();
 		csvFile = null;
+
+		if (errors.length > 0) {
+			alert(`Importazione completata con ${errors.length} errore/i:\n${errors.join('\n')}`);
+		}
 	}
 
 	async function handleResetObjects() {

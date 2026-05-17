@@ -214,32 +214,6 @@
 				Avvia Scambio
 			</button>
 
-			<!-- Settings Card -->
-			<div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 space-y-5">
-				<h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Impostazioni</h3>
-
-				<!-- oneObj Toggle -->
-				<div class="flex items-center justify-between">
-					<div>
-						<p class="text-sm font-medium text-gray-900">Oggetto Unico</p>
-						<p class="text-xs text-gray-500">Un oggetto per partecipante</p>
-					</div>
-					<label class="relative inline-flex items-center cursor-pointer">
-						<input type="checkbox" bind:checked={$swapSettings.oneObj} class="sr-only peer">
-						<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
-					</label>
-				</div>
-
-				<!-- Order Select -->
-				<div>
-					<p class="text-sm font-medium text-gray-900 mb-1">Ordinamento</p>
-					<select bind:value={$swapSettings.order} class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white">
-						<option value="decreasing">Decrescente</option>
-						<option value="increasing">Crescente</option>
-					</select>
-				</div>
-			</div>
-
 			<!-- Stats Card -->
 			<div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 space-y-4">
 				<h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Stato</h3>
