@@ -37,7 +37,7 @@
 		<!-- Logo -->
 		<div class="p-4 flex justify-center">
 			<a href="/" class="flex items-center gap-3">
-				<img src="{base}/icons/hat.svg" alt="" class="h-8 w-auto" />
+				<img src="{base}/icons/hat.svg" alt="" class="h-12 w-auto" />
 				<span class="text-lg font-bold text-white tracking-tight">SwappingScout</span>
 			</a>
 		</div>
