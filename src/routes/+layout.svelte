@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 
 	let { children } = $props();
 	let version = '2.0.0';
@@ -36,7 +37,7 @@
 		<!-- Logo -->
 		<div class="p-4 flex justify-center">
 			<a href="/" class="flex items-center justify-center">
-				<img src="%sveltekit.assets%/icons/hat.svg" alt="SwappingScout" class="h-8 w-auto" />
+				<img src="{base}/icons/hat.svg" alt="SwappingScout" class="h-8 w-auto" />
 			</a>
 		</div>
 
