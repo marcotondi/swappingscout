@@ -36,8 +36,9 @@
 	<aside class="w-60 bg-purple-950 text-white flex flex-col flex-shrink-0">
 		<!-- Logo -->
 		<div class="p-4 flex justify-center">
-			<a href="/" class="flex items-center justify-center">
-				<img src="{base}/icons/hat.svg" alt="SwappingScout" class="h-8 w-auto" />
+			<a href="/" class="flex items-center gap-3">
+				<img src="{base}/icons/hat.svg" alt="" class="h-8 w-auto" />
+				<span class="text-lg font-bold text-white tracking-tight">SwappingScout</span>
 			</a>
 		</div>
 
@@ -57,7 +58,7 @@
 
 		<!-- Footer -->
 		<div class="p-4 text-xs text-purple-400 text-center">
-			SwappingScout v{version}
+			v{version}
 		</div>
 	</aside>
 

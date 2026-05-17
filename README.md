@@ -4,7 +4,7 @@ PWA local-first per gestire il baratto nei mercatini scout, anche offline.
 SwappingScout aiuta a registrare partecipanti e oggetti, calcolare le assegnazioni
 e tracciare le consegne, con persistenza 100% locale nel browser.
 
-## Perché esiste
+## Perché?
 
 Nei mercatini scout il baratto richiede ordine, rapidità e trasparenza.
 Questa applicazione nasce per semplificare la gestione delle preferenze e
