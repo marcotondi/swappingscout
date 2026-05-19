@@ -30,7 +30,7 @@ SwappingScout is a barter management application for scout markets (mercatini sc
 | `src/routes/+page.svelte` | Home page |
 | `src/routes/consumatori/+page.svelte` | Consumer management page |
 | `src/routes/magazzino/+page.svelte` | Inventory management page |
-| `src/routes/scambio/+page.svelte` | Swap execution and results |
+| `src/routes/baratto/+page.svelte` | Swap execution and results |
 | `tests/algorithm.test.ts` | Algorithm unit tests |
 | `docs/adr/adr-001-local-first-architecture.md` | Architecture Decision Record |
 

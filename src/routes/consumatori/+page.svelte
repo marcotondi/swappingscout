@@ -188,13 +188,13 @@
 </script>
 
 <svelte:head>
-	<title>Gestione Partecipanti - SwappingScout</title>
+	<title>Partecipanti - SwappingScout</title>
 </svelte:head>
 
 <div class="space-y-6">
 	<!-- Header -->
 	<div class="flex items-center justify-between">
-		<h1 class="text-2xl font-bold text-gray-900">Gestione Partecipanti</h1>
+		<h1 class="text-2xl font-bold text-gray-900">Partecipanti</h1>
 	</div>
 
 	<!-- Toolbar -->
@@ -212,7 +212,7 @@
 		</div>
 
 		<button
-			on:click={() => openModal()}
+			onclick={() => openModal()}
 			class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors"
 		>
 			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -222,7 +222,7 @@
 		</button>
 
 		<button
-			on:click={handleExport}
+			onclick={handleExport}
 			class="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"
 		>
 			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +232,7 @@
 		</button>
 
 		<button
-			on:click={handleResetConsumers}
+			onclick={handleResetConsumers}
 			class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
 		>
 			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -251,7 +251,7 @@
 			class="text-sm file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
 		/>
 		<button
-			on:click={handleImport}
+			onclick={handleImport}
 			disabled={!csvFile}
 			class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
 		>
@@ -265,7 +265,7 @@
 			<table class="min-w-full">
 			<thead>
 				<tr class="border-b border-gray-100">
-					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" on:click={() => toggleSort('name')}>
+					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" onclick={() => toggleSort('name')}>
 						<div class="flex items-center gap-1">
 							Nome
 							{#if sortField === 'name'}
@@ -273,7 +273,7 @@
 							{/if}
 						</div>
 					</th>
-					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" on:click={() => toggleSort('firstChoice')}>
+					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" onclick={() => toggleSort('firstChoice')}>
 						<div class="flex items-center gap-1">
 							Scelta 1
 							{#if sortField === 'firstChoice'}
@@ -281,7 +281,7 @@
 							{/if}
 						</div>
 					</th>
-					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" on:click={() => toggleSort('secondChoice')}>
+					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" onclick={() => toggleSort('secondChoice')}>
 						<div class="flex items-center gap-1">
 							Scelta 2
 							{#if sortField === 'secondChoice'}
@@ -289,7 +289,7 @@
 							{/if}
 						</div>
 					</th>
-					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" on:click={() => toggleSort('thirdChoice')}>
+					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" onclick={() => toggleSort('thirdChoice')}>
 						<div class="flex items-center gap-1">
 							Scelta 3
 							{#if sortField === 'thirdChoice'}
@@ -328,7 +328,7 @@
 						<td class="px-6 py-4 whitespace-nowrap text-right">
 							<div class="flex items-center justify-end gap-2">
 								<button
-									on:click={() => editConsumerClick(consumer)}
+									onclick={() => editConsumerClick(consumer)}
 									class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center hover:bg-purple-200 transition-colors"
 									title="Modifica"
 								>
@@ -337,7 +337,7 @@
 									</svg>
 								</button>
 								<button
-									on:click={() => removeConsumer(consumer.id!)}
+									onclick={() => removeConsumer(consumer.id!)}
 									class="w-8 h-8 rounded-lg bg-red-100 text-red-600 flex items-center justify-center hover:bg-red-200 transition-colors"
 									title="Elimina"
 								>
@@ -359,8 +359,11 @@
 
 	<!-- Modal -->
 	{#if showModal}
-		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" on:click={closeModal}>
-			<div class="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto" on:click|stopPropagation>
+		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+			role="presentation"
+			onclick={closeModal}
+			onkeydown={(e) => e.key === 'Escape' && closeModal()}>
+			<div class="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto" role="presentation" onclick={(e) => e.stopPropagation()}>
 				<div class="p-6">
 					<h2 class="text-xl font-bold text-gray-900 mb-6">
 						{editingId !== null ? 'Modifica' : 'Nuovo'} Partecipante
@@ -418,13 +421,13 @@
 
 					<div class="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-100">
 						<button
-							on:click={closeModal}
+							onclick={closeModal}
 							class="px-4 py-2 border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
 						>
 							Annulla
 						</button>
 						<button
-							on:click={handleSubmit}
+							onclick={handleSubmit}
 							class="px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors"
 						>
 							Salva Partecipante

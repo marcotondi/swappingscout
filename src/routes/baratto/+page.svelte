@@ -80,7 +80,7 @@
 	}
 
 	async function handleResetResults() {
-		if (!confirm('Sei sicuro di voler eliminare TUTTI i risultati dello scambio?')) return;
+		if (!confirm('Sei sicuro di voler eliminare TUTTI i risultati del baratto?')) return;
 		await clearResults();
 		$results = [];
 	}
@@ -101,13 +101,13 @@
 </script>
 
 <svelte:head>
-	<title>Scambio - SwappingScout</title>
+	<title>Baratto - SwappingScout</title>
 </svelte:head>
 
 <div class="space-y-6">
 	<!-- Title -->
 	<div class="flex items-center justify-between">
-		<h1 class="text-2xl font-bold text-gray-900">Scambio</h1>
+		<h1 class="text-2xl font-bold text-gray-900">Baratto</h1>
 	</div>
 
 	{#if error}
@@ -183,7 +183,7 @@
 								</div>
 							</div>
 							<button
-								on:click={() => handleDelivered(result)}
+								onclick={() => handleDelivered(result)}
 								class="text-sm text-emerald-600 hover:text-emerald-700 font-medium px-3 py-1.5 rounded-lg hover:bg-emerald-50 transition-colors"
 							>
 								Consegnato
@@ -199,7 +199,7 @@
 						</svg>
 					</div>
 					<p class="text-gray-500 font-medium">Nessun risultato disponibile</p>
-					<p class="text-sm text-gray-400 mt-1">Avvia lo scambio per generare le assegnazioni</p>
+					<p class="text-sm text-gray-400 mt-1">Avvia il baratto per generare le assegnazioni</p>
 				</div>
 			{/if}
 		</div>
@@ -208,10 +208,10 @@
 		<div class="space-y-4">
 			<!-- Start Button -->
 			<button
-				on:click={handleStartSwap}
+				onclick={handleStartSwap}
 				class="w-full py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors shadow-lg shadow-purple-200"
 			>
-				Avvia Scambio
+				Avvia Baratto
 			</button>
 
 			<!-- Stats Card -->
@@ -247,7 +247,7 @@
 					<h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Azioni</h3>
 
 					<button
-						on:click={handleExport}
+						onclick={handleExport}
 						class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors"
 					>
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -257,7 +257,7 @@
 					</button>
 
 					<button
-						on:click={handleResetResults}
+						onclick={handleResetResults}
 						class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
 					>
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -270,7 +270,7 @@
 
 			<!-- Reset Completo -->
 			<button
-				on:click={() => showReset = true}
+				onclick={() => showReset = true}
 				class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-500 rounded-lg text-sm font-medium hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors"
 			>
 				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,10 +283,13 @@
 
 	<!-- Confirm Modal -->
 	{#if showConfirm}
-		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" on:click={() => showConfirm = false}>
-			<div class="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto" on:click|stopPropagation>
+		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+			role="presentation"
+			onclick={() => showConfirm = false}
+			onkeydown={(e) => e.key === 'Escape' && (showConfirm = false)}>
+			<div class="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto" role="presentation" onclick={(e) => e.stopPropagation()}>
 				<div class="p-6">
-					<h3 class="text-lg font-bold text-gray-900 mb-4">Conferma Scambio</h3>
+					<h3 class="text-lg font-bold text-gray-900 mb-4">Conferma Baratto</h3>
 					<div class="space-y-2 text-sm text-gray-600 mb-4">
 						<p>Stai per avviare l'algoritmo con:</p>
 						<ul class="list-disc list-inside space-y-1">
@@ -299,13 +302,13 @@
 					<p class="text-red-600 text-sm mb-6">⚠️ Questa azione cancellerà i risultati precedenti</p>
 					<div class="flex gap-3">
 						<button
-							on:click={() => showConfirm = false}
+							onclick={() => showConfirm = false}
 							class="flex-1 px-4 py-2 border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
 						>
 							Annulla
 						</button>
 						<button
-							on:click={confirmSwap}
+							onclick={confirmSwap}
 							class="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"
 						>
 							Avvia
@@ -318,8 +321,11 @@
 
 	<!-- Reset Modal -->
 	{#if showReset}
-		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" on:click={() => { showReset = false; resetConfirm = ''; }}>
-			<div class="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto" on:click|stopPropagation>
+		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+			role="presentation"
+			onclick={() => { showReset = false; resetConfirm = ''; }}
+			onkeydown={(e) => e.key === 'Escape' && (showReset = false) || (resetConfirm = '')}>
+			<div class="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto" role="presentation" onclick={(e) => e.stopPropagation()}>
 				<div class="p-6">
 					<h3 class="text-lg font-bold text-red-600 mb-4">⚠️ Reset Completo</h3>
 					<p class="text-sm text-gray-600 mb-4">
@@ -340,13 +346,13 @@
 					</div>
 					<div class="flex gap-3">
 						<button
-							on:click={() => { showReset = false; resetConfirm = ''; }}
+							onclick={() => { showReset = false; resetConfirm = ''; }}
 							class="flex-1 px-4 py-2 border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
 						>
 							Annulla
 						</button>
 						<button
-							on:click={handleReset}
+							onclick={handleReset}
 							class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-medium hover:bg-red-700 transition-colors"
 						>
 							Reset

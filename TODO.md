@@ -10,7 +10,7 @@
 - [x] i codici devono essere nel formato XYZ. x = carattere y e z numeri (es A01, B10) altrimenti nell'ordinamento abbiamo risultati sfalzati.
 - [x] verifica la possibilità di inserire più oggetti con lo stesso codice, non deve essere possibile.
 - [x] verifica, in fase di inserimento CSV dei partecipanti, la richiesta di un codice non presente in magazzino, alla fine del caricamento del file deve essere avvisato l'admin degli errori presenti.
-- [ ] ho provato la web app su dispositivi mobile. Il frontend non è responsive, la barra del munù a sx non è a scomparsa, praticamente è inutilizzabile!
+- [x] ho provato la web app su dispositivi mobile. Il frontend non è responsive, la barra del munù a sx non è a scomparsa, praticamente è inutilizzabile!
 
 ## NICE HAVE
 - [x] Le tabelle devono poter essere ordinate in maniera crescente o decrescente. Di default il codice è ordinato, ma volendo anche gli altri campi l'utente può ordinarli
@@ -21,5 +21,3 @@
 - [x] nelle pagina impostazioni sezione ordinamento scrivere Decrescente come default
 - [x] utilizzare questa favicon https://raw.githubusercontent.com/marcotondi/swappingscout/refs/heads/legacy-v1/client/img/favicon.ico
 - [x] utilizzare solo il cappellone come logo, senza la scritta https://raw.githubusercontent.com/marcotondi/swappingscout/refs/heads/legacy-v1/client/img/logo.svg
-- [ ] uniformare il logo di partecipante come è settato nel menù a sx
-- [ ] Il testo della PWA deve essere tutto correttamente in italiano. Lo sviluppo deve essere fatto in inglese, così come le route devono essere in inglese
