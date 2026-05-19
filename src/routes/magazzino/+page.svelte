@@ -213,7 +213,7 @@
 	</div>
 
 	<!-- Import CSV -->
-	<div class="flex items-center gap-3">
+	<div class="flex flex-wrap items-center gap-3">
 		<input
 			type="file"
 			accept=".csv"
@@ -231,7 +231,8 @@
 
 	<!-- Table -->
 	<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-		<table class="min-w-full">
+		<div class="overflow-x-auto">
+			<table class="min-w-full">
 			<thead>
 				<tr class="border-b border-gray-100">
 					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" on:click={() => toggleSort('code')}>
@@ -283,7 +284,8 @@
 					</tr>
 				{/each}
 			</tbody>
-		</table>
+			</table>
+		</div>
 		{#if filteredObjects.length === 0}
 			<div class="px-6 py-12 text-center text-gray-400 text-sm">Nessun oggetto trovato</div>
 		{/if}
@@ -292,7 +294,7 @@
 	<!-- Modal -->
 	{#if showModal}
 		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" on:click={closeModal}>
-			<div class="bg-white rounded-xl shadow-xl max-w-lg w-full" on:click|stopPropagation>
+			<div class="bg-white rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto" on:click|stopPropagation>
 				<div class="p-6">
 					<h2 class="text-xl font-bold text-gray-900 mb-6">
 						{editingId !== null ? 'Modifica' : 'Nuovo'} Oggetto

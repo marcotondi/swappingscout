@@ -243,7 +243,7 @@
 	</div>
 
 	<!-- Import CSV -->
-	<div class="flex items-center gap-3">
+	<div class="flex flex-wrap items-center gap-3">
 		<input
 			type="file"
 			accept=".csv"
@@ -261,7 +261,8 @@
 
 	<!-- Table -->
 	<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-		<table class="min-w-full">
+		<div class="overflow-x-auto">
+			<table class="min-w-full">
 			<thead>
 				<tr class="border-b border-gray-100">
 					<th class="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider cursor-pointer select-none hover:text-gray-700" on:click={() => toggleSort('name')}>
@@ -349,7 +350,8 @@
 					</tr>
 				{/each}
 			</tbody>
-		</table>
+			</table>
+		</div>
 		{#if filteredConsumers.length === 0}
 			<div class="px-6 py-12 text-center text-gray-400 text-sm">Nessun partecipante trovato</div>
 		{/if}
@@ -382,7 +384,7 @@
 							/>
 						</div>
 
-						<div class="grid grid-cols-2 gap-4">
+						<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 							<div>
 								<label for="modal-first" class="block text-sm font-medium text-gray-700 mb-1">Scelta 1</label>
 								<select id="modal-first" bind:value={firstChoice} class="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white">

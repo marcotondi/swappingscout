@@ -148,7 +148,7 @@
 
 			<!-- Success Banner -->
 			{#if $results.length > 0}
-				<div class="bg-emerald-500 rounded-xl p-4 flex items-center justify-between text-white">
+				<div class="bg-emerald-500 rounded-xl p-4 flex flex-wrap items-center justify-between gap-2 text-white">
 					<div class="flex items-center gap-2">
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
@@ -168,7 +168,7 @@
 			{#if $results.length > 0}
 				<div class="space-y-3">
 					{#each filteredResults as result}
-						<div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex items-center justify-between hover:shadow-md transition-shadow">
+						<div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-wrap items-center justify-between gap-2 hover:shadow-md transition-shadow">
 							<div class="flex items-center gap-3">
 								<div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
 									<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -284,7 +284,7 @@
 	<!-- Confirm Modal -->
 	{#if showConfirm}
 		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" on:click={() => showConfirm = false}>
-			<div class="bg-white rounded-xl shadow-xl max-w-md w-full" on:click|stopPropagation>
+			<div class="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto" on:click|stopPropagation>
 				<div class="p-6">
 					<h3 class="text-lg font-bold text-gray-900 mb-4">Conferma Scambio</h3>
 					<div class="space-y-2 text-sm text-gray-600 mb-4">
@@ -319,7 +319,7 @@
 	<!-- Reset Modal -->
 	{#if showReset}
 		<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" on:click={() => { showReset = false; resetConfirm = ''; }}>
-			<div class="bg-white rounded-xl shadow-xl max-w-md w-full" on:click|stopPropagation>
+			<div class="bg-white rounded-xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto" on:click|stopPropagation>
 				<div class="p-6">
 					<h3 class="text-lg font-bold text-red-600 mb-4">⚠️ Reset Completo</h3>
 					<p class="text-sm text-gray-600 mb-4">
