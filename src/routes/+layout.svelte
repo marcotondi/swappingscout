@@ -2,9 +2,9 @@
 	import '../app.css';
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
+	import { version } from '$lib/version';
 
 	let { children } = $props();
-	let version = '2.0.0';
 	let sidebarOpen = $state(false);
 
 	const navItems = [
