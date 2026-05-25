@@ -1,14 +1,9 @@
 # SwappingScout v2.0
 
 PWA local-first per gestire il baratto nei mercatini scout, anche offline.
+
 SwappingScout aiuta a registrare partecipanti e oggetti, calcolare le assegnazioni
 e tracciare le consegne, con persistenza 100% locale nel browser.
-
-## Perché?
-
-Nei mercatini scout il baratto richiede ordine, rapidità e trasparenza.
-Questa applicazione nasce per semplificare la gestione delle preferenze e
-automatizzare il matching degli oggetti.
 
 ## Quick start
 
@@ -58,6 +53,26 @@ Vince l'assegnazione il partecipante con lo score più alto.
 **Tie-breaking:** in caso di parità, l'algoritmo tenta ricorsivamente con
 l'oggetto alternativo del partecipante; se il pareggio persiste, viene
 privilegiato chi ha già ricevuto meno oggetti in sessione (a parità, estrazione casuale).
+
+## Versioning
+
+Il versioning è automatizzato con [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version), basato sui messaggi dei commit in formato [Conventional Commits](https://www.conventionalcommits.org/).
+
+**Regole di bump automatico:**
+
+| Tipo di commit | Bump | Esempio |
+|----------------|------|---------|
+| `fix:` | patch | `2.0.0` → `2.0.1` |
+| `feat:` | minor | `2.0.0` → `2.1.0` |
+| `BREAKING CHANGE:` nel body | major | `2.0.0` → `3.0.0` |
+
+**Come rilasciare una nuova versione:**
+
+```bash
+# Dopo aver fatto i commit con Conventional Commits:
+npm run release              # calcola il bump, aggiorna version, genera CHANGELOG, crea commit + tag
+git push --follow-tags       # pusha su remoto
+```
 
 ## Comandi
 
