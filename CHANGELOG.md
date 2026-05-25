@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.2.0](https://github.com/marcotondi/swappingscout/compare/v2.1.0...v2.2.0) (2026-05-25)
+
+
+### Features
+
+* import app version from package.json instead of hardcoded value ([74295e3](https://github.com/marcotondi/swappingscout/commit/74295e3d962fdfbf17f0e7fd15ae8cc637aacd89))
+
 ## [2.1.0](https://github.com/marcotondi/swappingscout/compare/v2.0.0...v2.1.0) (2026-05-25)
 
 
