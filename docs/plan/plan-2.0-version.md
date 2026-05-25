@@ -487,7 +487,7 @@ export const swapSettings = writable({ order: 'decreasing' as const, oneObj: tru
 
 ### Fase 9: UI — Scambio (Algoritmo + Risultati)
 
-**File:** `src/routes/scambio/+page.svelte`
+**File:** `src/routes/baratto/+page.svelte`
 
 **Funzionalità:**
 1. **Pannello di controllo:**
