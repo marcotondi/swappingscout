@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.3.0](https://github.com/marcotondi/swappingscout/compare/v2.2.0...v2.3.0) (2026-06-06)
+
+
+### Features
+
+* **i18n:** complete Italian localization of UI labels ([abe6dad](https://github.com/marcotondi/swappingscout/commit/abe6dadd273821533613f6771db386abe4a97d55))
+* **ui:** rename route /consumatori to /partecipanti and standardize button colors ([8f10861](https://github.com/marcotondi/swappingscout/commit/8f108618464ad5b0ef629739a88c44398e03d376))
+
 ## [2.2.0](https://github.com/marcotondi/swappingscout/compare/v2.1.0...v2.2.0) (2026-05-25)
 
 
