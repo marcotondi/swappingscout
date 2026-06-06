@@ -96,7 +96,7 @@
 	<div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
 		<h2 class="text-lg font-semibold text-gray-900 mb-4">Azioni Rapide</h2>
 		<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-			<a href="/consumatori" class="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-colors group">
+			<a href="/partecipanti" class="flex items-center gap-4 p-4 rounded-lg border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-colors group">
 				<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center group-hover:bg-purple-200 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"

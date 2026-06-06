@@ -31,7 +31,7 @@
 
 	async function handleStartSwap() {
 		if ($consumers.length === 0 || $objects.length === 0) {
-			error = 'Aggiungi prima consumatori e oggetti';
+			error = 'Aggiungi prima partecipanti e oggetti';
 			return;
 		}
 		showConfirm = true;
@@ -209,7 +209,7 @@
 			<!-- Start Button -->
 			<button
 				onclick={handleStartSwap}
-				class="w-full py-3 bg-purple-600 text-white rounded-xl font-semibold hover:bg-purple-700 transition-colors shadow-lg shadow-purple-200"
+				class="w-full py-3 bg-emerald-500 text-white rounded-xl font-semibold hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-200"
 			>
 				Avvia Baratto
 			</button>
@@ -248,7 +248,7 @@
 
 					<button
 						onclick={handleExport}
-						class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors"
+						class="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"
 					>
 						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
@@ -329,7 +329,7 @@
 				<div class="p-6">
 					<h3 class="text-lg font-bold text-red-600 mb-4">⚠️ Reset Completo</h3>
 					<p class="text-sm text-gray-600 mb-4">
-						Questa azione cancellerà TUTTI i dati (consumatori, oggetti, risultati).<br>
+						Questa azione cancellerà TUTTI i dati (partecipanti, oggetti, risultati).<br>
 						<strong class="text-red-600">Non è reversibile!</strong>
 					</p>
 					<div class="mb-4">

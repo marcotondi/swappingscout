@@ -10,7 +10,7 @@
 	const navItems = [
 		{ href: '/', label: 'Home', icon: HomeIcon },
 		{ href: '/magazzino', label: 'Magazzino', icon: BoxIcon },
-		{ href: '/consumatori', label: 'Partecipanti', icon: UsersIcon },
+		{ href: '/partecipanti', label: 'Partecipanti', icon: UsersIcon },
 		{ href: '/baratto', label: 'Baratto', icon: SwapIcon },
 		{ href: '/impostazioni', label: 'Impostazioni', icon: SettingsIcon }
 	];
@@ -18,7 +18,7 @@
 	const pageTitles: Record<string, string> = {
 		'/': 'Dashboard',
 		'/magazzino': 'Magazzino',
-		'/consumatori': 'Partecipanti',
+		'/partecipanti': 'Partecipanti',
 		'/baratto': 'Baratto',
 		'/impostazioni': 'Impostazioni'
 	};
