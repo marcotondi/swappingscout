@@ -153,13 +153,13 @@
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
 						</svg>
-						<span class="font-medium">Success Rate: {successRate}%</span>
+						<span class="font-medium">Tasso di Successo: {successRate}%</span>
 					</div>
 					<div class="flex items-center gap-2">
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
 						</svg>
-						<span class="font-medium">Total Points: {totalPoints.toFixed(0)}</span>
+						<span class="font-medium">Punti Totali: {totalPoints.toFixed(0)}</span>
 					</div>
 				</div>
 			{/if}

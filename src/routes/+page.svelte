@@ -34,9 +34,9 @@
             </svg>
 					</div>
 				</div>
-				<p class="text-sm text-gray-500">Total Participants</p>
+				<p class="text-sm text-gray-500">Partecipanti Totali</p>
 				<p class="text-3xl font-bold text-gray-900">{$consumers.length}</p>
-				<p class="text-xs text-gray-400 mt-1">Currently Registered</p>
+				<p class="text-xs text-gray-400 mt-1">Registrati</p>
 			</div>
 		</div>
 
@@ -51,9 +51,9 @@
 						</svg>
 					</div>
 				</div>
-				<p class="text-sm text-gray-500">Total Items</p>
+				<p class="text-sm text-gray-500">Oggetti Totali</p>
 				<p class="text-3xl font-bold text-gray-900">{$objects.length}</p>
-				<p class="text-xs text-gray-400 mt-1">Available in Warehouse</p>
+				<p class="text-xs text-gray-400 mt-1">Disponibili in Magazzino</p>
 			</div>
 		</div>
 
@@ -68,9 +68,9 @@
 						</svg>
 					</div>
 				</div>
-				<p class="text-sm text-gray-500">Successful Swaps</p>
+				<p class="text-sm text-gray-500">Baratti Riusciti</p>
 				<p class="text-3xl font-bold text-gray-900">{$results.length}</p>
-				<p class="text-xs text-gray-400 mt-1">Completed Transactions</p>
+				<p class="text-xs text-gray-400 mt-1">Transazioni Completate</p>
 			</div>
 		</div>
 
@@ -85,9 +85,9 @@
 						</svg>
 					</div>
 				</div>
-				<p class="text-sm text-gray-500">Total Points</p>
+				<p class="text-sm text-gray-500">Punti Totali</p>
 				<p class="text-3xl font-bold text-gray-900">{totalPoints.toFixed(2)}</p>
-				<p class="text-xs text-gray-400 mt-1">Allocated</p>
+				<p class="text-xs text-gray-400 mt-1">Assegnati</p>
 			</div>
 		</div>
 	</div>

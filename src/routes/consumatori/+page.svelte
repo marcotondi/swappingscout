@@ -109,7 +109,7 @@
 			c.name.toLowerCase() === name.trim().toLowerCase() && c.id !== editingId
 		);
 		if (existing) {
-			error = 'Esiste già un consumatore con questo nome';
+			error = 'Esiste già un partecipante con questo nome';
 			return false;
 		}
 
@@ -141,7 +141,7 @@
 	}
 
 	async function removeConsumer(id: number) {
-		if (!confirm('Sei sicuro di voler eliminare questo consumatore?')) return;
+		if (!confirm('Sei sicuro di voler eliminare questo partecipante?')) return;
 		await deleteConsumer(id);
 		$consumers = await getAllConsumers();
 	}
